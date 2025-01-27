@@ -55,6 +55,21 @@ const Menu = () => {
           Introducción
         </button>
         <button
+          onClick={() => navigate("/decalogo")}
+          style={{
+            padding: "15px",
+            fontSize: "18px",
+            backgroundColor: "#c8f309",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          Decálogo
+        </button>
+        <button
           onClick={() => navigate("/dinamica")}
           style={{
             padding: "15px",

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const shuffleOptions = (options) => {
   return options
     .map((option) => ({ ...option, order: Math.random() }))
@@ -11,7 +10,6 @@ const shuffleOptions = (options) => {
 
 const Dinamica = () => {
   const navigate = useNavigate();
-
 
   const questions = [
     {
@@ -32,7 +30,6 @@ const Dinamica = () => {
         { text: "Sinergiza", isCorrect: false },
       ],
     },
-
     {
       id: 3,
       question: "¿Qué significa 'Primero lo Primero'?",
@@ -139,9 +136,10 @@ const Dinamica = () => {
       ],
     },
 
-
+    // Más preguntas...
   ];
 
+  const passingScore = Math.ceil((questions.length * 70) / 100); // Puntaje aprobatorio (70%)
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -190,31 +188,77 @@ const Dinamica = () => {
     }
   };
 
-  const handlePreviousQuestion = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
-      setShuffledOptions(
-        shuffleOptions(questions[currentQuestion - 1].options)
-      );
-      setSelectedOption(null);
-      setIsAnswered(false);
-      setTimeLeft(15);
-    }
-  };
-
   return (
     <div
       className="container-fluid p-4"
       style={{
         backgroundColor: "#ffffff",
         height: "100vh",
-        width: "100vw", // Ancho completo de la ventana
+        width: "100vw",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
+      <style>
+        {`
+          .fireworks {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+          }
+          .firework {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #f39c12;
+            border-radius: 50%;
+            animation: explode 1.5s infinite;
+          }
+          .firework:nth-child(1) {
+            top: 50%;
+            left: 50%;
+            animation-delay: 0s;
+          }
+          .firework:nth-child(2) {
+            top: 30%;
+            left: 40%;
+            animation-delay: 0.3s;
+          }
+          .firework:nth-child(3) {
+            top: 60%;
+            left: 30%;
+            animation-delay: 0.6s;
+          }
+          @keyframes explode {
+            0% {
+              transform: scale(0.5);
+              opacity: 1;
+            }
+            100% {
+              transform: scale(2.5);
+              opacity: 0;
+            }
+          }
+          .next-time {
+            font-size: 2rem;
+            color: #e74c3c;
+            animation: fadeInOut 1.5s infinite;
+          }
+          @keyframes fadeInOut {
+            0%, 100% {
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+          }
+        `}
+      </style>
       <h1 className="text-center mb-4 text-primary">Cuestionario Interactivo</h1>
       {!showResults ? (
         <>
@@ -270,48 +314,41 @@ const Dinamica = () => {
               </button>
             ))}
           </div>
-          <div className="d-flex justify-content-between mt-3" style={{ width: "100%" }}>
+          {isAnswered && (
             <button
-              onClick={handlePreviousQuestion}
-              disabled={currentQuestion === 0}
+              onClick={handleNextQuestion}
               style={{
                 padding: "10px 20px",
-                backgroundColor: "#95a5a6",
+                backgroundColor: "#3498db",
                 color: "white",
                 border: "none",
                 borderRadius: "5px",
-                cursor: currentQuestion === 0 ? "not-allowed" : "pointer",
+                cursor: "pointer",
+                marginTop: "10px",
               }}
             >
-              Regresar
+              {currentQuestion < questions.length - 1
+                ? "Siguiente Pregunta"
+                : "Finalizar Cuestionario"}
             </button>
-            {isAnswered && (
-              <button
-                onClick={handleNextQuestion}
-                style={{
-                  padding: "10px 20px",
-                  backgroundColor: "#3498db",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
-              >
-                {currentQuestion < questions.length - 1
-                  ? "Siguiente Pregunta"
-                  : "Finalizar Cuestionario"}
-              </button>
-            )}
-          </div>
+          )}
         </>
       ) : (
         <div className="text-center">
-          <h2>¡Cuestionario Completado!</h2>
-          <p>Tu puntuación final es: {score}/{questions.length}</p>
+          {score >= passingScore ? (
+            <div className="fireworks">
+              <div className="firework"></div>
+              <div className="firework"></div>
+              <div className="firework"></div>
+            </div>
+          ) : (
+            <div className="next-time">¡Sigue practicando para la próxima vez!</div>
+          )}
+          <h2>Tu puntuación final es: {score}/{questions.length}</h2>
           <button
             onClick={() => navigate("/menu")}
             style={{
-              marginTop: "20px",
+              marginTop: "200px",
               padding: "10px 20px",
               backgroundColor: "#3498db",
               color: "white",
