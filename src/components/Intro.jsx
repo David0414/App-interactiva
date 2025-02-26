@@ -86,17 +86,18 @@ const Intro = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "20px",
+        padding: "5vw",
         overflow: "hidden",
+        textAlign: "center",
       }}
     >
       <h1
         style={{
           position: "absolute",
-          top: "20px",
+          top: "5%",
           left: "50%",
           transform: "translateX(-50%)",
-          fontSize: "80px",
+          fontSize: "4vw",
           fontWeight: "bold",
           color: "white",
           textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
@@ -112,9 +113,9 @@ const Intro = () => {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
             gap: "20px",
-            width: "100%",
+            width: "90%",
             maxWidth: "1200px",
-            marginTop: "100px",
+            marginTop: "10vh",
           }}
         >
           {habits.map((habit) => (
@@ -123,7 +124,7 @@ const Intro = () => {
               onClick={() => handleHabitClick(habit)}
               style={{
                 width: "100%",
-                height: "150px",
+                height: "10vh",
                 backgroundColor: "rgba(0, 0, 0, 0.6)",
                 color: "white",
                 display: "flex",
@@ -159,15 +160,14 @@ const Intro = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: "80%",
+            width: "85%",
             maxWidth: "800px",
-            maxHeight: "90%",
+            maxHeight: "80%",
             backgroundColor: "white",
             borderRadius: "15px",
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
             display: "flex",
             flexDirection: "column",
-            zIndex: "20",
             overflow: "hidden",
           }}
         >
@@ -176,19 +176,18 @@ const Intro = () => {
             alt={selectedHabit.title}
             style={{
               width: "100%",
-              height: "20%", // Imagen más pequeña para mayor espacio a la descripción
-              objectFit: "contain", // Mantener proporciones
+              height: "30vh",
+              objectFit: "cover",
             }}
           />
           <div
             style={{
               flex: "1",
-              padding: "30px",
+              padding: "5%",
               overflowY: "auto",
-              textAlign: "center",
             }}
           >
-            <h2 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+            <h2 style={{ fontSize: "1.8rem", fontWeight: "bold" }}>
               {selectedHabit.title}
             </h2>
             <p style={{ fontSize: "1rem", marginTop: "10px", lineHeight: "1.5" }}>
@@ -200,13 +199,12 @@ const Intro = () => {
             style={{
               margin: "10px 0",
               padding: "10px 20px",
-              fontSize: "16px",
+              fontSize: "1rem",
               backgroundColor: "#e74c3c",
               color: "white",
               border: "none",
               borderRadius: "5px",
               cursor: "pointer",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
               alignSelf: "center",
             }}
           >
@@ -219,24 +217,21 @@ const Intro = () => {
         onClick={() => navigate("/menu")}
         style={{
           position: "absolute",
-          bottom: "100px",
-          right: "200px",
-          padding: "10px 20px",
-          fontSize: "16px",
+          bottom: "5%",
+          right: "5%",
+          padding: "12px 24px",
+          fontSize: "1rem",
           backgroundColor: "#e74c3c",
           color: "white",
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
-          transition: "background-color 0.3s",
         }}
       >
         Regresar
       </button>
     </div>
   );
-
 };
 
 export default Intro;

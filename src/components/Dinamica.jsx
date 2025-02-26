@@ -152,7 +152,7 @@ const Dinamica = () => {
 
   useEffect(() => {
     if (!isAnswered && timeLeft > 0) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 2000);
       return () => clearTimeout(timer);
     } else if (timeLeft === 0) {
       handleNextQuestion();
