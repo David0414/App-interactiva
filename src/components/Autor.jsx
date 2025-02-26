@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const Autor = () => {
   const navigate = useNavigate();
 
-  // Ejemplo de imágenes (coloca las rutas de tus imágenes aquí)
   const images = [
     "/images/img1.jpg",
     "/images/img2.jpg",
@@ -29,12 +28,12 @@ const Autor = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        width: "100vw", // Ocupa todo el ancho de la ventana
-        minHeight: "100vh", // Ocupa al menos el alto de la ventana
-        backgroundColor: "#f4f4f4", // Fondo claro
+        width: "100vw",
+        minHeight: "100vh",
+        backgroundColor: "#f4f4f4",
         fontFamily: "Arial, sans-serif",
         textAlign: "center",
-        padding: "20px",
+        padding: "5vw",
       }}
     >
       <div
@@ -42,50 +41,52 @@ const Autor = () => {
           backgroundColor: "#ffffff",
           borderRadius: "15px",
           boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)",
-          padding: "40px",
+          padding: "5vw",
           maxWidth: "600px",
           width: "90%",
           marginBottom: "30px",
         }}
       >
-        <h1 className="mb-4 text-primary">David Mendoza Pérez</h1>
-        <h4 className="mb-4 text-secondary">
+        <h1 style={{ fontSize: "2rem", color: "#007bff" }}>David Mendoza Pérez</h1>
+        <h4 style={{ fontSize: "1.2rem", color: "#6c757d" }}>
           Estudiante de la Facultad de Informática
         </h4>
-        <div className="mb-4">
-          <div className="d-flex align-items-center justify-content-start mb-3">
-            <FaWhatsapp className="me-3 text-success" size={24} />
-            <span style={{ fontSize: "18px" }}>442 665 1403</span>
+
+        <div style={{ margin: "20px 0" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
+            <FaWhatsapp style={{ marginRight: "10px", color: "#25D366" }} size={24} />
+            <span style={{ fontSize: "1rem" }}>442 665 1403</span>
           </div>
-          <div className="d-flex align-items-center justify-content-start mb-3">
-            <FaEnvelope className="me-3 text-danger" size={24} />
-            <span style={{ fontSize: "18px" }}>david.mendoza.perez74@gmail.com</span>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
+            <FaEnvelope style={{ marginRight: "10px", color: "#e74c3c" }} size={24} />
+            <span style={{ fontSize: "1rem" }}>david.mendoza.perez74@gmail.com</span>
           </div>
-          <div className="d-flex align-items-center justify-content-start mb-3">
-            <FaGithub className="me-3 text-dark" size={24} />
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
+            <FaGithub style={{ marginRight: "10px", color: "#333" }} size={24} />
             <a
               href="https://github.com/David0414"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ fontSize: "18px", textDecoration: "none" }}
+              style={{ fontSize: "1rem", textDecoration: "none", color: "#007bff" }}
             >
               Checa mi perfil !
             </a>
           </div>
         </div>
-        <h5 className="text-dark mt-4">
+        <h5 style={{ fontSize: "1.2rem", color: "#333", marginTop: "20px" }}>
           "Quiero ser parte de tu proyecto, ¡contáctame!"
         </h5>
       </div>
 
-      {/* Cuadros con imágenes */}
+      {/* Galería de imágenes */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)", // 3 columnas por fila
-          gap: "20px",
-          maxWidth: "900px", // Tamaño máximo del contenedor
+          gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
+          gap: "15px",
+          maxWidth: "900px",
           width: "100%",
+          marginTop: "20px",
         }}
       >
         {images.map((image, index) => (
@@ -96,7 +97,6 @@ const Autor = () => {
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
               overflow: "hidden",
               backgroundColor: "#ffffff",
-              textAlign: "center",
             }}
           >
             <img
@@ -104,35 +104,28 @@ const Autor = () => {
               alt={`Imagen ${index + 1}`}
               style={{
                 width: "100%",
-                height: "150px",
+                height: "120px",
                 objectFit: "cover",
               }}
             />
-            <div
-              style={{
-                padding: "10px",
-                fontSize: "16px",
-                fontWeight: "bold",
-                backgroundColor: "#f4f4f4",
-              }}
-            >
-            </div>
           </div>
         ))}
       </div>
 
+      {/* Botón de regreso */}
       <button
         onClick={() => navigate("/menu")}
         style={{
           marginTop: "30px",
-          padding: "15px",
-          fontSize: "18px",
+          padding: "12px 20px",
+          fontSize: "1rem",
           backgroundColor: "#e74c3c",
           color: "white",
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.2)",
+          transition: "background-color 0.3s ease",
         }}
       >
         Regresar
